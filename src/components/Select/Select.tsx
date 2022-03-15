@@ -1,28 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import {
   Select,
   MenuItem,
-  SelectChangeEvent,
   FormControl,
   InputLabel,
+  SelectChangeEvent,
 } from '@mui/material';
 
 interface SelectProps {
   value?: string;
   label?: string;
   sx?: any;
-  onChange?: () => void;
+  onChange?: (event: SelectChangeEvent) => void;
 }
 
-export const CustomSelect = ({ sx, value, label, onChange }: SelectProps) => {
-  const [priority, setPriority] = useState('');
-
-  const priorityChangeHandler = (event: SelectChangeEvent) => {
-    setPriority(event.target.value as string);
-    console.log(priority);
-  };
-
+export const CustomSelect = ({ sx, label, onChange, value }: SelectProps) => {
   return (
     <>
       <FormControl sx={sx}>
@@ -30,8 +23,8 @@ export const CustomSelect = ({ sx, value, label, onChange }: SelectProps) => {
         <Select
           id='priority-label'
           label={label}
-          value={priority}
-          onChange={priorityChangeHandler}
+          value={value}
+          onChange={onChange}
         >
           <MenuItem value='High'>High</MenuItem>;
           <MenuItem value='Medium'>Medium</MenuItem>;

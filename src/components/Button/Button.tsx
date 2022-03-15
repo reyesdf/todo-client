@@ -3,8 +3,8 @@ import React from 'react';
 import { Button } from '@mui/material';
 
 interface ButtonProps {
-  variant: 'text' | 'contained' | 'outlined';
-  onClick: () => void;
+  variant?: 'text' | 'contained' | 'outlined';
+  onClick?: () => void;
   label?: string;
 }
 

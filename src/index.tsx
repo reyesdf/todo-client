@@ -4,9 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { Grommet } from 'grommet';
+import { theme } from './theme';
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Grommet theme={theme}>
+      <App />
+    </Grommet>
   </React.StrictMode>,
   document.getElementById('root')
 );
