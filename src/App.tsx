@@ -9,14 +9,8 @@ const axios = require('axios').default;
 
 function App() {
   const [todo, setTodo] = useState('');
-  const [todoData, setTodoData] = useState([
-    {
-      id: '',
-      todo: '',
-      priority: '',
-    },
-  ]);
   const [priority, setPriority] = useState('');
+  const [todoData, setTodoData] = useState<any[]>([]);
 
   const onChangeHandler = (event: any) => {
     const task = event.target.value;
@@ -47,20 +41,13 @@ function App() {
       .get('http://localhost:3001')
       .then(function (response: any) {
         // handle success
-        console.log(response.data.todos.id);
-        setTodoData([
-          {
-            id: response.data.todos.id,
-            todo: response.data.todos.todo,
-            priority: response.data.todos.priority,
-          },
-        ]);
+        setTodoData(response.data.todos);
       })
       .catch(function (error: any) {
         // handle error
         console.log(error);
       });
-  }, []);
+  }, [todoData]);
 
   return (
     <Box
@@ -93,17 +80,17 @@ function App() {
         label='Add Task'
       />
       <Box>
-        {/* {todoData.map((todos) => (
-          <CustomCard
-            key={todos.id}
-            header={todos.todo}
-            body={todos.priority}
-          />
-        ))} */}
-
-        {todoData.map((todo) => (
-          <CustomCard key={todo.id} header={todo.todo} body={todo.priority} />
-        ))}
+        {todoData.length > 0 ? (
+          todoData.map((todos) => (
+            <CustomCard
+              key={todos.id}
+              header={todos.todo}
+              body={todos.priority}
+            />
+          ))
+        ) : (
+          <h1>No Todos</h1>
+        )}
       </Box>
     </Box>
   );

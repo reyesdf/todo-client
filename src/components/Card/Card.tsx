@@ -2,7 +2,7 @@ import { Card, CardHeader, CardBody } from 'grommet';
 
 interface CardProps {
   header: string;
-  body: string;
+  body?: string;
 }
 
 export const CustomCard = ({ header, body }: CardProps) => {
